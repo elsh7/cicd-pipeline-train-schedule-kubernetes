@@ -4,22 +4,20 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
-      - npm install -g typescript
-      - npm install
+      - echo Installing
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
+      - npm install
   build:
     commands:
       - echo Build started on `date`
-      - npm prune --production
+      - echo Compiling the Node.js code
+      - npm run build
     post_build:
       commands:
         - echo Build completed on `date`  
 artifacts:
   type: zip
   files:
-    - package.json
-    - package-lock.json
-    - app.js
-    - "build/**/*"
+    - '**/*'
